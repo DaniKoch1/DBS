@@ -1,0 +1,14 @@
+CREATE TABLE Hotel (
+	 hotelNO INT NOT NULL
+    , hotelName VARCHAR(15)
+    , city VARCHAR(15)
+    , PRIMARY KEY (hotelNo)
+    );
+
+CREATE TABLE Room(
+    roomNo INT NOT NULL CHECK(VALUE BETWEEN 1 AND 100)
+    ,hotelNo INT NOT NULL CHECK (VALUE IN (SELECT hotelNo FROM Hotel))
+    ,type CHAR(6) CHECK VALUE IN ('Single', 'Double', 'Family')
+    ,price INT CHECK (VALUE BETWEEN 10 AND 100)
+    ,PRIMARY KEY(roomNo, hotelNo)
+    );
